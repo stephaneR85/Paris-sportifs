@@ -1,0 +1,8 @@
+services:
+    pel_paris.calculgain:
+        class: PEL\ParisBundle\Service\CalculGain
+        arguments: [id, em, users, mise]
+          
+#    pel_paris.example:
+#        class: PEL\ParisBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

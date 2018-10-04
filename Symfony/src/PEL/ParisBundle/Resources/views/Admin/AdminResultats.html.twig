@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+        <h2>Page resultats</h2>
+        <h3>Ajout resultats</h3>
+        <div>
+        {% for p in paris %}
+                <p id={{p.id}}><div id="nomsport">{{p.nomSport}}</div>Le : {{p.date|date("d/m/Y")}} <br>{{p.equipe1}}--{{p.equipe2}}{% if p.date|date("d/m/Y") == "now"|date("d/m/Y") %}<div id="alerte">Match aujourd'hui</div>{% endif%}</p><br>
+                <input id="bouton" type="button" value= "Publier les resultats" onclick="afficheForm({{p.id}}, '{{p.equipe1}}', '{{p.equipe2}}');"/>
+        {% endfor %}        
+        </div>
+        <p>{% if res is defined %} {{dump(res)}}{% endif%}</p>
+        <p id="i"></p>
+   <script>
+            function afficheForm(id, equipe1, equipe2){
+                var s = document.getElementById(id);
+                s.innerHTML =   '{{form_start(form)}} ' + equipe1 +' <input type="hidden" name="id" value='+id+'/>{{form_widget(form.scoreEq1)}}--{{form_widget(form.scoreEq2)}} '+equipe2+' {{form_end(form)}}';
+                }
+       </script>
+{%endblock body%}

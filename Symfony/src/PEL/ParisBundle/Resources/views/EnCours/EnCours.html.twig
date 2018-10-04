@@ -1,0 +1,26 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+        <h1>{{nomSport}}</h1>
+        <p>
+            <div id="affiche">{% if affiche is defined %}{{affiche}}{% endif %}</div>
+            {% for p in paris %}
+                {% if p.date|date("Y/m/d") >= "now"|date("Y/m/d") %}
+                    <p id="paris">{{p.equipe1}} -- {{p.equipe2}} -- Date du match : {{p.date|date("d/m/Y")}}</p><br>
+                    <p id={{p.id}}></p>
+                    {% if app.user.id is defined %}
+                        <input type="button" id="bouton" value="Pariez sur ce match" onClick="afficheForm({{p.id}},'{{p.equipe1}}','{{p.equipe2}}');"/> 
+                    {% else %}
+                        <p>Vous devez être inscrit pour parier</p>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </p>
+       {% if app.user.id is defined %}
+       <script>
+            function afficheForm(id, equipe1, equipe2){
+                var s = document.getElementById(id);
+                s.innerHTML =   '{{form_start(form)}}'+equipe1+'<input type="hidden" value='+id+' name="id"/>{{form_widget(form.scoreEq1)}}'+equipe2+'{{form_widget(form.scoreEq2)}}{{ form_widget(form.id_user, {'value' : app.user.id}) }}{{form_end(form)}}';
+                }
+       </script>
+       {% endif %}
+{% endblock body %}

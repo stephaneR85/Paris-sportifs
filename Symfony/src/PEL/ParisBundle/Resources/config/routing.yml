@@ -1,0 +1,37 @@
+pel_paris_homepage:
+    path:     /
+    defaults:  
+        _controller: PELParisBundle:Accueil:index 
+        
+pel_paris_encours:
+    path:     /encours/{nomSport}
+    defaults: 
+        _controller: PELParisBundle:EnCours:index 
+        
+pel_paris_resultats:
+    path:     /resultats
+    defaults: 
+        _controller: PELParisBundle:Resultats:index 
+        
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    
+pel_paris_admin:
+    path:    /admin
+    defaults: 
+        _controller: PELParisBundle:Admin:index
+        
+pel_paris_admin_paris:
+    path:    /admin/paris
+    defaults: 
+        _controller: PELParisBundle:AdminParis:index
+ 
+pel_paris_admin_res:
+    path:    /admin/resultats
+    defaults: 
+        _controller: PELParisBundle:AdminResultats:index
+        
+pel_paris_client:
+    path:    /client
+    defaults:
+        _controller: PELParisBundle:Client:index

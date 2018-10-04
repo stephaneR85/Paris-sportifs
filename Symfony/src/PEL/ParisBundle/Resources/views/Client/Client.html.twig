@@ -1,0 +1,30 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+        <h2>Historique des paris</h2>
+        <table class="table table-striped">
+            <thead>    
+                <tr>
+                    <td>Date du match</td><td>Equipe 1</td><td>Score</td><td>Equipe2</td><td>Pronostic</td><td>Cote</td><td>Mise</td><td>Gain</td>
+                </tr>
+            </thead>
+                {% for p in paris %}
+                    <tr>
+                        <td>{{p.paris.date|date("m/d/Y")}}</td><td>{{p.paris.equipe1}}</td><td>{{ p.paris.resultats.scoreEq1}}--{{p.paris.resultats.scoreEq2}}</td><td>{{p.paris.equipe2}}</td><td>{{p.scoreEq1}} -- {{p.scoreEq2}}</td><td>{{p.paris.coteEq1}} -- {{p.paris.coteEq2}}</td><td>{{p.mise}}</td><td>{% if p.gain is defined %}{{p.gain}}{% endif %}</td>
+                    </tr>
+                {% endfor %}
+        </table>
+        <h2>Paris en cours</h2>
+        <table class="table table-striped">
+            <thead>    
+                <tr>
+                    <td>Date du match</td><td>Equipe 1</td><td>Score</td><td>Equipe2</td><td>Pronostic</td><td>Cote</td><td>Mise</td>
+                </tr>
+            </thead>
+                {% for p in parisEnCours %}
+                    <tr>
+                        <td>{{p.paris.date|date("m/d/Y")}}</td><td>{{p.paris.equipe1}}</td><td> -- </td><td>{{p.paris.equipe2}}</td><td>{{p.scoreEq1}} -- {{p.scoreEq2}}</td><td>{{p.paris.coteEq1}} -- {{p.paris.coteEq2}}</td><td>{{p.mise}}</td>
+                    </tr>
+                {% endfor %}
+        </table>
+        <p id="Solde">Solde du compte : {{user.solde}} crédits</p>
+    {%endblock body%}

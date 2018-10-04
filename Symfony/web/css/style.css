@@ -1,0 +1,33 @@
+/* 
+    Document   : style
+    Created on : 30 mars 2017, 00:26:26
+    Author     : stephane
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+body{
+    margin: 10px;
+    padding: 10px;
+}
+#date{
+    float: right;
+}
+
+#alerte{
+    color:red;
+}
+#bouton{
+    margin-bottom: 30px;
+}
+#nomsport{
+    font-size: 20px;
+    color: blue;
+}
+#affiche{
+    color:red;
+}

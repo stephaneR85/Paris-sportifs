@@ -1,0 +1,10 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <p>{{ 'registration.confirmed'|trans}} {{user.username}}</p>
+
+    <p><a href="{{ path('pel_paris_homepage') }}">Retour à l'accueil</a></p>
+
+{% endblock fos_user_content %}

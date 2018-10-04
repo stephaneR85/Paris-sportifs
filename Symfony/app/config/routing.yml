@@ -1,0 +1,4 @@
+pel_paris:
+    resource: "@PELParisBundle/Resources/config/routing.yml"
+    prefix:   /
+

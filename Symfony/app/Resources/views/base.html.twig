@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}{{titre}}{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}" />
+            <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap-theme.min.css')}}" />
+            <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}" />
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <div>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {{ 'Membre connecté : '|trans}} {{app.user.username}} 
+                <a href="{{ path('fos_user_security_logout') }}">
+                    {{ 'Deconnexion'|trans({}, 'FOSUserBundle') }}
+                    </a><p id="date">Nous sommes le : {{ "now"|date("d/m/Y") }}</p><br>
+                {% if is_granted("ROLE_ADMIN") and app.request.attributes.get('_route') != 'pel_paris_admin' %}
+                    <br><a href="{{path('pel_paris_admin')}}">Page admin</a>
+                {% else %}
+                    <br><a href="{{path('pel_paris_client')}}">Page client</a>
+                {% endif %}
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}">{{ 'Se connecter'|trans({}, 'FOSUserBundle') }}</a><br>
+                <a href="{{ path('fos_user_registration_register') }}">Inscription</a><br>
+            {% endif %}
+            {% if app.request.attributes.get('_route') != 'pel_paris_homepage' %}
+                    <a href="{{ path('pel_paris_homepage') }}">Retour à l'accueil</a>
+            {% endif%}
+        </div>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+            <script type="text/javascript" src="{{asset('js/jquery.js')}}"></script>
+            <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
+        {% endblock %}
+    </body>
+</html>

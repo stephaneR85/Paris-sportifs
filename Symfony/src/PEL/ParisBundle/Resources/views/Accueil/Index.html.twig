@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+        <h2>Bienvenue sur paris en ligne</h2>
+        <p>
+            Choisissez parmis les sports suivants pour afficher les paris en cours.
+        </p>
+        <div id="sport">
+            {% for s in sport %}
+                <a href="{{path('pel_paris_encours',{'nomSport': s.nomSport})}}">{{s.nomSport}}</a><br>
+            {% endfor %}
+        </div>
+    {%endblock body %}
